@@ -1,0 +1,61 @@
+package com.example.studentsmanagement.model;
+
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "university_class")
+public class UniversityClass {
+    @OneToMany(mappedBy = "universityClass")
+    List<Student> students;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(nullable = false)
+    private Integer year;
+    @Column(nullable = false)
+    private Integer number;
+
+    public UniversityClass() {
+    }
+
+    public UniversityClass(Long id, Integer year, Integer number) {
+        this.id = id;
+        this.year = year;
+        this.number = number;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += " Primary ID: " + getId();
+        str += " Year: " + getYear();
+        str += " Number " + getNumber();
+        return str;
+    }
+}
